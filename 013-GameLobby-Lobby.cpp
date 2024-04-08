@@ -1,6 +1,6 @@
 #include "013-GameLobby-Lobby.h"
 
-Lobby::Lobby(): m_pHead(0) {}
+Lobby::Lobby(): m_pHead(0), m_pTail(0) {}
 Lobby::~Lobby() { Clear(); }
 
 void Lobby::AddPlayer()
@@ -13,15 +13,12 @@ void Lobby::AddPlayer()
     if (m_pHead == 0)
     {
         m_pHead = pNewPlayer;
+        m_pTail = pNewPlayer;
     }
     else
     {
-        Player* pIter = m_pHead;
-        while (pIter->GetNext() != 0)
-        {
-            pIter = pIter->GetNext();
-        }
-        pIter->SetNext(pNewPlayer);
+        m_pTail->SetNext(pNewPlayer);
+        m_pTail = pNewPlayer;
     }
 }
 
@@ -62,7 +59,7 @@ std::ostream& operator<<(std::ostream& os, const Lobby& aLobby)
     {
         while (pIter !=0)
         {
-            os << pIter->GetName() << std::endl;
+            os << *pIter << std::endl;
             pIter = pIter->GetNext();
         }
     }

@@ -3,6 +3,7 @@
 
 class Player
 {
+    friend std::ostream& operator<<(std::ostream& os, const Player& aPlayer);
 public:
     Player(const std::string& name);
     std::string GetName() const;

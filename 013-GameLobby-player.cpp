@@ -17,3 +17,9 @@ void Player::SetNext(Player* next)
 {
     m_pNext = next;
 }
+
+std::ostream& operator<<(std::ostream& os, const Player& aPlayer)
+{
+    os << aPlayer.GetName();
+    return os;
+}
